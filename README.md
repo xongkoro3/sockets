@@ -1,3 +1,3 @@
 # sockets
-Python network programming projects
+Network programming projects:
 Python makes socket programming easy.
