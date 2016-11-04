@@ -2,24 +2,16 @@
 # See https://docs.python.org/3.2/library/socket.html
 # for a decscription of python socket and its parameters
 import socket
-
 from threading import Thread
 from argparse import ArgumentParser
-
-# for the server you may find the following python libraries useful:
 import os
-# e.g., os.path.isfile, os.path.exists
-
+# Use os.path.isfile, os.path.exists
 import stat
-#check if a file has others permissions set, os.stat
-
+# Check if a file has others permissions set, os.stat
 import sys 
-# enables you to get the argument vector (argv) from command line and use
-# values passed in from the command line
+# Get the argument vector (argv) from command line and use
 
-
-#other defintions that will come in handy for getting data and
-#constructing a response
+/** Definitions **/
 BUFSIZE = 4096
 CRLF = '\r\n'
 OK = 'HTTP/1.0 200 OK{}{}'.format(CRLF,CRLF)
@@ -28,8 +20,6 @@ FORBIDDEN = 'HTTP/1.0 403 Forbidden{}{}'.format(CRLF,CRLF)
 MTHD_NOT_ALLOWED = 'HTTP/1.0 405 Method Not Allowed{}{}'.format(CRLF,CRLF)
 MOVED = 'HTTP/1.1 301 Moved Permanently{}'.format(CRLF)
 NOT_ACCEPTABLE = 'HTTP/1.0 406 Not Acceptable{}'.format(CRLF)
-#You might find it useful to define variables similiar to the one above
-#for each kind of response message
 
 #Outline for processing a request - indicated by the call to processreq below
 #the outline below is for a GET request, though the others should be similar (but not the same)
@@ -50,6 +40,7 @@ NOT_ACCEPTABLE = 'HTTP/1.0 406 Not Acceptable{}'.format(CRLF)
     #                          the string you read in from the file
     #                          return the response
 
+/** Server **/
 
 def processreq(data):
     request_type = str(data).split('\r\n')[0].split(' ')[0] # Identify the request type GET or HEAD
