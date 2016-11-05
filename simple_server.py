@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # See https://docs.python.org/3.2/library/socket.html
 # for a decscription of python socket and its parameters
+
 import socket
 from threading import Thread
 from argparse import ArgumentParser
@@ -21,24 +22,6 @@ MTHD_NOT_ALLOWED = 'HTTP/1.0 405 Method Not Allowed{}{}'.format(CRLF,CRLF)
 MOVED = 'HTTP/1.1 301 Moved Permanently{}'.format(CRLF)
 NOT_ACCEPTABLE = 'HTTP/1.0 406 Not Acceptable{}'.format(CRLF)
 
-#Outline for processing a request - indicated by the call to processreq below
-#the outline below is for a GET request, though the others should be similar (but not the same)
-#remember, you have an HTTP Message that you are parsing
-#so, you want to parse the message to get the first word on the first line
-#of the message (the HTTP command GET, HEAD, ????) if the HTTP command is not known you should respond with an error
-#then get the  resource (file path and name) - python strip and split should help
-#Next,  does the resource have a legal name (no % character) 
-#			if false  - construct an error message for the response and return
-    #       if true - check to see if the resource exists
-				# if false - construct an error message for the response and return
-				# if true - check to see if the permissions on the resource for others are ok
-				# 	if false - construct an error message for the response and resturn
-				# 	if true - Success!!! 
-    #                          open the resource (file)
-    #                          read the resource into a buffer
-    #                          create a response message by concatenating the OK message above with
-    #                          the string you read in from the file
-    #                          return the response
 
 /** Server **/
 
